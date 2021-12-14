@@ -28,8 +28,7 @@ export default {
         });
 
         this.imgPath = `${process.env.VUE_APP_SERVER}/get/avator/${this.profileData.id}`;
-
-      },
+  },
 
 
   methods: {

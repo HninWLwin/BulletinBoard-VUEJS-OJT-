@@ -31,6 +31,10 @@ export default {
             });
 
     },
+
+    cancel() {
+      this.$router.go(-1);
+  }
 }
 
 };

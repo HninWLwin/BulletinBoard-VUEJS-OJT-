@@ -22,6 +22,8 @@ mounted(){
     {
         this.$router.push({ name: "post-list" });
     }
+   
+    this.saveProfilePicture(this.createUserInfo.profile_path);
   },
 
   destroyed(){
@@ -42,7 +44,7 @@ mounted(){
                 phone: this.createUserInfo.phone,
                 address: this.createUserInfo.address,
                 dob: this.createUserInfo.dob,
-                profile_path: this.saveProfilePicture(this.createUserInfo.profile_path),
+                profile_path: this.profilePath
             })
             .then(() => {
                 this.$router.push({ name: "user-list" });
@@ -57,7 +59,7 @@ mounted(){
       this.$axios
           .post("/save/profile_picture", profile_path)
           .then((response) => {
-              this.profilePath = "./../../../mock/target/" + response.data.profile_path;
+              this.profilePath = response.data.profile_path;
           })
           .catch((err) => {
               console.log(err);

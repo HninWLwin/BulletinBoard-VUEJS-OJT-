@@ -39,6 +39,10 @@ export default {
                 console.log(err);   
             });
     },
+
+    cancel() {
+      this.$router.go(-1);
+  }
 }
 
 };

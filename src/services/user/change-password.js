@@ -39,7 +39,14 @@ export default {
                 },
             })
             .then(() => {
-                this.$router.push({ name: "user-list" });
+                this.$store
+                .dispatch("logout")
+                .then(() => {
+                  this.$router.push({ name: "login" });
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
             })
               .catch(err => {
                 this.error = err.response.error;

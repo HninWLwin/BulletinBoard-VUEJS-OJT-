@@ -6,6 +6,7 @@ export default {
       profilePath: "",
       showUserList: [],
       imgPath: "",
+      profile_path: ""
     };
   },
   computed: {
@@ -28,7 +29,7 @@ export default {
             phone: this.editConfirmUserInfo.phone,
             address: this.editConfirmUserInfo.address,
             dob: this.editConfirmUserInfo.dob,
-            profile_path: this.saveProfilePicture(this.editConfirmUserInfo.profile_path),
+            profile_path: this.profilePath
         })
         .then(() => {
             this.$router.push({ name: "user-list" });
@@ -40,10 +41,13 @@ export default {
     },
 
     saveProfilePicture(profile_path) {
-      this.$axios
+    var dataURL = URL.createObjectURL(profile_path);
+    var output = document.getElementById('output');
+    output.src = dataURL;
+    this.$axios
           .post("/save/profile_picture", profile_path)
           .then((response) => {
-              this.profilePath = "./../../../mock/target/" + response.data.profile_path;
+              this.profilePath = response.data.profile_path;
           })
           .catch((err) => {
               console.log(err);
@@ -53,12 +57,6 @@ export default {
   changePassword() {
     this.$router.push({ name: "user-change-password" });
   },
-
-  showProfile(profile_path) {
-    var dataURL = URL.createObjectURL(profile_path);
-    var output = document.getElementById('output');
-    output.src = dataURL;
-},
 
 /**
          * This is profile clear method

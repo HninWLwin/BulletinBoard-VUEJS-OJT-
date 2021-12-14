@@ -50,7 +50,7 @@
             type="file"
             label="New Profile"
             v-model="profile_path"
-            v-on:change="showProfile(profile_path)"
+            v-on:change="saveProfilePicture(profile_path)"
           ></v-file-input>
          <v-avatar size="100" class="mr-4">
             <img id="output" >

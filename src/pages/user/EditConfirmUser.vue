@@ -46,6 +46,7 @@
         <div class="confirm-action">
           <v-spacer></v-spacer>
           <v-btn type="submit"  large color="success" class="mr-4" @click="editConfirm">Confirm</v-btn>
+          <v-btn large color="secondary" class="mr-4" @click="cancel">Cancel</v-btn>
         </div>
       </v-card-actions>
     </v-form>

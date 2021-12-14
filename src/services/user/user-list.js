@@ -87,9 +87,9 @@ export default {
      * 
     */
      userDetail(item) {
-      this.showUserList = this.userList.filter(
-        user => (user.id == item.id && 
-         ("deleted_user_id" in user) == false));
+      this.showUserList = this.userList
+      .filter(user => (user.id == item.id && ("deleted_user_id" in user) == false));
+      this.imgPath = `${process.env.VUE_APP_SERVER}/get/avator/${item.id}`;
       this.isUserDetailDialog = true
    },
 

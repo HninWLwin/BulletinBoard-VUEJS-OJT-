@@ -64,6 +64,9 @@
             <v-card-title class="text-h5">User Detail</v-card-title>
             <v-card-text >
               <table v-for="user in showUserList" :key="user.id">
+                <v-avatar size="100" class="mr-4">
+                    <img v-bind:src="imgPath"  alt="Avatar">
+                </v-avatar>
                 <tr width="100" height="50">
                   <td colspan="2" >Name </td>
                   <td>{{ user.name }}</td>
