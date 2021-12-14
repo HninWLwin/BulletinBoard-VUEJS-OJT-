@@ -1,0 +1,19 @@
+.create-title {
+    background: #19d2a4;
+    color: #ffffff;
+  }
+  
+  .create-input {
+    height: 70px;
+  }
+  
+  .create-action {
+    margin: 100px 7px 7px 7px;
+  }
+  
+  .create-error {
+    color: red;
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 10px;
+  }
