@@ -13,6 +13,12 @@ export default {
         // validation rules for post description.
         desRules: [value => !!value || "The description field is required."]
     }),
+
+    mounted() {
+        this.title = localStorage.getItem("title");
+        this.description = localStorage.getItem("description")
+    },
+
     methods: {
         /**
          * This to post create form.
@@ -23,6 +29,9 @@ export default {
                 title:this.title, 
                 description:this.description
             });
+            
+            localStorage.setItem("title", this.title);
+            localStorage.setItem("description", this.description);
             this.$router.push({ name: "post-create-confirm" });
         },
 

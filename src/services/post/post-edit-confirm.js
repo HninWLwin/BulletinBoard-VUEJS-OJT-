@@ -5,7 +5,7 @@ export default {
     return {
       error: "",
       message: "",
-      showList: []
+      showList: [],
     };
   },
   computed: {

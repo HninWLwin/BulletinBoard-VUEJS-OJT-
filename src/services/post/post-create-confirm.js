@@ -14,6 +14,9 @@ export default {
     {
         this.$router.push({ name: "post-list" });
     }
+
+    localStorage.setItem("title", this.postInfo.title);
+    localStorage.setItem("description", this.postInfo.description);
   },
 
   destroyed(){
@@ -32,6 +35,8 @@ export default {
                 description: this.postInfo.description
             })
             .then(() => {
+                localStorage.removeItem("title");
+                localStorage.removeItem("description");
                 this.$router.push({ name: "post-list" });
             })
             .catch(err => {
@@ -42,7 +47,7 @@ export default {
 
     cancel() {
       this.$router.go(-1);
-  }
+  },
 }
 
 };
