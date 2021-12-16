@@ -1,3 +1,4 @@
+import { mapGetters } from "vuex";
 export default {
     data: () => ({
         valid: true,
@@ -14,9 +15,16 @@ export default {
         desRules: [value => !!value || "The description field is required."]
     }),
 
-    mounted() {
-        this.title = localStorage.getItem("title");
-        this.description = localStorage.getItem("description")
+    computed: {
+        ...mapGetters(["postInfo"]),
+      },
+
+    created() {
+        if (this.postInfo) {
+            this.title = this.postInfo.title;
+            this.description = this.postInfo.description;
+            this.$store.dispatch("setPostData");
+        }
     },
 
     methods: {
@@ -30,8 +38,6 @@ export default {
                 description:this.description
             });
             
-            localStorage.setItem("title", this.title);
-            localStorage.setItem("description", this.description);
             this.$router.push({ name: "post-create-confirm" });
         },
 

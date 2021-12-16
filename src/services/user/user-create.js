@@ -1,3 +1,4 @@
+import { mapGetters } from "vuex";
 export default {
     data: () => ({
         valid: true,
@@ -46,42 +47,57 @@ export default {
             value => !!value || "The profile field is required.",
         ],
     }),
+    
+computed: {
+    ...mapGetters(["createUserInfo"]),
+},
 
-    methods: {
-        /**
-         * This to post create form.
-         * @returns void
-         */
-        create() {
-            this.$store.commit("setCreateUser", {
-                name: this.name, 
-                email: this.email,
-                password: this.password,
-                phone: this.phone,
-                address: this.address,
-                dob: this.dob,
-                profile_path: this.profile_path,
-            });
-            this.$router.push({ name: "user-create-confirm" });
-        },
+created() {
+    if (this.createUserInfo) {
+        this.name = this.createUserInfo.name;
+        this.email = this.createUserInfo.email;
+        this.phone = this.createUserInfo.phone;
+        this.address = this.createUserInfo.address;
+        this.dob = this.createUserInfo.dob;
+        this.$store.dispatch("setCreateUser");
+    }
+},
 
-        showProfile(profile_path) {
-            var dataURL = URL.createObjectURL(profile_path);
-            var output = document.getElementById('profile');
-            output.src = dataURL;
-        },
+methods: {
+    /**
+    * This to post create form.
+    *@returns void
+    */
+    create() {
+        this.$store.commit("setCreateUser", {
+            name: this.name, 
+            email: this.email,
+            password: this.password,
+            phone: this.phone,
+            address: this.address,
+            dob: this.dob,
+            profile_path: this.profile_path,
+        });
+        this.$router.push({ name: "user-create-confirm" });
+    },
 
-        /**
-         * This is reset method
-         */
-        reset() {
-        this.name = "",
-        this.email = "",
-        this.password = "",
-        this.profile_path = "",
-        this.phone = "",
-        this.address = "",
-        this.dob = ""
+    showProfile(profile_path) {
+        var dataURL = URL.createObjectURL(profile_path);
+        var output = document.getElementById('profile');
+        output.src = dataURL;
+    },
+
+    /**
+    * This is reset method
+    */
+    reset() {
+    this.name = "",
+    this.email = "",
+    this.password = "",
+    this.profile_path = "",
+    this.phone = "",
+    this.address = "",
+    this.dob = ""
       },
     }
   };
